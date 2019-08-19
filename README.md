@@ -1,10 +1,6 @@
 # Pokkit  [![Build Status](https://travis-ci.org/rutgerkok/Pokkit.svg?branch=master)](https://travis-ci.org/rutgerkok/Pokkit)
 
-| <h3>Project status</h3>    |
-|-------------------|
-| Currently, Nukkit, on which this project depends, is not actively developed. Pokkit is of course still open for contributions, but I don't really expect any interest. The best option for running Bukkit plugins on Minecraft Pocket Edition (or equivalently, Bedrock Edition) currently seems to be Dragonet DragonProxy. |
-
-The Minecraft multiplayer scene is fragmented. There are many competing server implementations. A popular server is [Spigot](http://www.spigotmc.org/). Spigot is able to load plugins, which can interact with Minecraft through the Spigot Plugin API. For Minecraft Pocket Edition, the mobile version of Minecraft, a server with a plugin API similar to Spigot exists: [Nukkit](https://forums.nukkit.io/). Unfortunately, plugins written for Spigot cannot run on Nukkit.
+The Minecraft multiplayer scene is fragmented. There are many competing server implementations. A popular server is [Spigot](http://www.spigotmc.org/). Spigot is able to load plugins, which can interact with Minecraft through the Spigot Plugin API. For Minecraft Pocket Edition, the mobile version of Minecraft, a server with a plugin API similar to Spigot exists: [Nukkit](https://nukkitx.com/). Unfortunately, plugins written for Spigot cannot run on Nukkit.
 
 Pokkit is a translation layer that allows plugins written for Spigot to work on Nukkit. However, it is far from perfect. Because of the size of the Spigot API, it is not possible for me to implement all of the Spigot API.
 
@@ -47,7 +43,10 @@ Contributions are very much welcomed. If you have any questions, feel free to se
 
 Before you start, please read the [contribution guidelines](./CONTRIBUTING.md). I hope to be able to add your name to the list below soon!
 
-### Contributed code since 2018
+### Contributed code in 2019
+* [PetteriM1](https://github.com/PetteriM1)
+
+### Contributed code in 2018
 * [Jesse Boyd](https://github.com/boy0001)
 * [Rutger Kok](https://github.com/rutgerkok)
 
