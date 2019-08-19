@@ -11,6 +11,7 @@ import java.util.SplittableRandom;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import cn.nukkit.level.Sound;
 import org.apache.commons.lang.Validate;
 import org.bukkit.*;
 import org.bukkit.advancement.Advancement;
@@ -1066,14 +1067,11 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 	@Override
 	public void setBedSpawnLocation(Location arg0) {
 		this.nukkit.setSpawn(new Vector3(arg0.getX(), arg0.getY(), arg0.getZ()));
-		// throw Pokkit.unsupported();
-
 	}
 
 	@Override
 	public void setBedSpawnLocation(Location arg0, boolean arg1) {
 		this.nukkit.setSpawn(new Vector3(arg0.getX(), arg0.getY(), arg0.getZ()));
-		// throw Pokkit.unsupported();
 	}
 
 	@Override

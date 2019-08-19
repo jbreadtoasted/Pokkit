@@ -841,7 +841,7 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public ItemStack createExplorerMap(World w, Location l, StructureType t) {
-		return createExplorerMap(w, l, t);
+		throw Pokkit.unsupported();
 	}
 
 	@Override

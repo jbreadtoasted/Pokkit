@@ -259,7 +259,6 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public void removePotionEffect(PotionEffectType type) {
-		// throw Pokkit.unsupported();
 		nukkit.removeEffect(type.getId());
 	}
 
@@ -353,5 +352,4 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 				.map(material -> PokkitBlockData.createBlockData(material, 0).getNukkitId())
 				.toArray(Integer[]::new);
 	}
-
 }
