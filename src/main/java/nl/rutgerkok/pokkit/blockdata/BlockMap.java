@@ -502,6 +502,8 @@ final class BlockMap {
 		registerBukkitToNukkit(BlockID.CONCRETE, Material.LEGACY_CONCRETE);
 		registerBukkitToNukkit(BlockID.CONCRETE_POWDER, Material.LEGACY_CONCRETE_POWDER);
 		registerBukkitToNukkit(BlockID.AIR, Material.LEGACY_STRUCTURE_BLOCK);
+		registerBukkitToNukkit(BlockID.STANDING_BANNER, Material.LEGACY_STANDING_BANNER);
+		registerBukkitToNukkit(BlockID.WALL_BANNER, Material.LEGACY_WALL_BANNER);
 	}
 
 	/**

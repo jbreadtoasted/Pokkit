@@ -11,6 +11,12 @@ import java.util.SplittableRandom;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import cn.nukkit.level.Position;
+import cn.nukkit.network.protocol.SetSpawnPositionPacket;
+import cn.nukkit.network.protocol.SetTimePacket;
+import cn.nukkit.network.protocol.StopSoundPacket;
+import nl.rutgerkok.pokkit.item.PokkitItemStack;
+import nl.rutgerkok.pokkit.world.PokkitWorld;
 import org.apache.commons.lang.Validate;
 import org.bukkit.*;
 import org.bukkit.advancement.Advancement;
@@ -499,8 +505,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public String getLocale() {
-		// Not implemented in Nukkit
-		return "en_US";
+		return nukkit.getLoginChainData().getLanguageCode();
 	}
 
 	@Override
@@ -611,8 +616,14 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public int getTotalExperience() {
-		throw Pokkit.unsupported();
-
+		int level = nukkit.getExperienceLevel();
+		if (level <= 16) {
+			return nukkit.getExperience() + (int) (Math.pow(level, 2) + 6 * level);
+		} else if (level <= 31) {
+			return nukkit.getExperience() + (int) (2.5 * Math.pow(level, 2) - 40.5 * level + 360);
+		} else {
+			return nukkit.getExperience() + (int) (4.5 * Math.pow(level, 2) - 162.5 * level + 2220);
+		}
 	}
 
 	@Override
@@ -797,8 +808,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public boolean isSleepingIgnored() {
-		throw Pokkit.unsupported();
-
+		return false; // Silently unsupported!
 	}
 
 	@Override
@@ -863,8 +873,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public boolean performCommand(String arg0) {
-		throw Pokkit.unsupported();
-
+		return nukkit.getServer().dispatchCommand(nukkit, arg0);
 	}
 
 	@Override
@@ -933,8 +942,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void removeAchievement(@SuppressWarnings("deprecation") org.bukkit.Achievement achievement) {
-		throw Pokkit.unsupported();
-
+		// Silently unsupported!
 	}
 
 	@Override
@@ -949,14 +957,12 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void resetPlayerTime() {
-		throw Pokkit.unsupported();
-
+		nukkit.level.sendTime(nukkit);
 	}
 
 	@Override
 	public void resetPlayerWeather() {
-		throw Pokkit.unsupported();
-
+		nukkit.level.sendWeather(nukkit);
 	}
 
 	@Override
@@ -966,8 +972,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void saveData() {
-		throw Pokkit.unsupported();
-
+		nukkit.save();
 	}
 
 	@Override
@@ -1075,8 +1080,14 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void setCompassTarget(Location arg0) {
-		throw Pokkit.unsupported();
-
+		// this may not be the best idea
+		SetSpawnPositionPacket pk = new SetSpawnPositionPacket();
+		pk.spawnType = SetSpawnPositionPacket.TYPE_WORLD_SPAWN;
+		Position spawn = PokkitWorld.toNukkit(arg0.getWorld()).getSpawnLocation();
+		pk.x = spawn.getFloorX();
+		pk.y = spawn.getFloorY();
+		pk.z = spawn.getFloorZ();
+		nukkit.dataPacket(pk);
 	}
 
 	@Override
@@ -1153,8 +1164,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void setItemOnCursor(ItemStack arg0) {
-		throw Pokkit.unsupported();
-
+		nukkit.getCursorInventory().setItem(0, PokkitItemStack.toNukkitCopy(arg0));
 	}
 
 	@Override
@@ -1200,8 +1210,9 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void setPlayerTime(long arg0, boolean arg1) {
-		throw Pokkit.unsupported();
-
+		SetTimePacket pk = new SetTimePacket();
+		pk.time = (int) arg0;
+		nukkit.dataPacket(pk);
 	}
 
 	@Override
@@ -1280,8 +1291,8 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void setTotalExperience(int arg0) {
-		throw Pokkit.unsupported();
-
+		nukkit.setExperience(0, 0);
+		nukkit.addExperience(arg0);
 	}
 
 	@Override
@@ -1297,7 +1308,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 	private void showPlayer(Class<?> clazz, Player player) {
 		this.hidingRequests.remove(clazz);
 		if (this.hidingRequests.isEmpty()) {
-			nukkit.showPlayer(PokkitPlayer.toNukkit(player));
+			nukkit.showPlayer(toNukkit(player));
 		}
 	}
 
@@ -1427,12 +1438,15 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void stopSound(String sound) {
-		// Silently unsupported!
+		StopSoundPacket pk = new StopSoundPacket();
+		pk.name = sound;
+		pk.stopAll = false;
+		nukkit.dataPacket(pk);
 	}
 
 	@Override
 	public void stopSound(String sound, SoundCategory category) {
-		// Silently unsupported!
+		stopSound(sound);
 	}
 
 	@Override

@@ -321,14 +321,12 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public int getAmbientSpawnLimit() {
-		throw Pokkit.unsupported();
-
+		return nukkit.getConfig().getInt("spawn-limits.ambient");
 	}
 
 	@Override
 	public int getAnimalSpawnLimit() {
-		throw Pokkit.unsupported();
-
+		return nukkit.getConfig().getInt("spawn-limits.animals");
 	}
 
 	@Override
@@ -394,7 +392,7 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public int getIdleTimeout() {
-		throw Pokkit.unsupported();
+		return 10000;
 
 	}
 
@@ -455,8 +453,7 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public int getMonsterSpawnLimit() {
-		throw Pokkit.unsupported();
-
+		return nukkit.getConfig().getInt("spawn-limits.monsters");
 	}
 
 	@Override
@@ -582,9 +579,7 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public String getServerName() {
-		// Nukkit has no concept of "server name"
-		// Still, it would be nice if the server admin could change this
-		return "this Minecraft Server";
+		return nukkit.getMotd();
 	}
 
 	@Override
@@ -609,14 +604,12 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public int getTicksPerAnimalSpawns() {
-		throw Pokkit.unsupported();
-
+		return nukkit.getConfig().getInt("ticks-per.animal-spawns");
 	}
 
 	@Override
 	public int getTicksPerMonsterSpawns() {
-		throw Pokkit.unsupported();
-
+		return nukkit.getConfig().getInt("ticks-per.monster-spawns");
 	}
 
 	@Override
@@ -652,8 +645,7 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public int getWaterAnimalSpawnLimit() {
-		throw Pokkit.unsupported();
-
+		return nukkit.getConfig().getInt("spawn-limits.animals");
 	}
 
 	@Override
@@ -673,8 +665,7 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public File getWorldContainer() {
-		// Copied from nukkit.generateLevel
-		return new File(nukkit.getDataPath() + "worlds/");
+		return new File(nukkit.getDataPath() + "/worlds/");
 	}
 
 	@Override

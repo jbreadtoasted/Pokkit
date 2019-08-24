@@ -108,12 +108,12 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public double getEyeHeight() {
-		throw Pokkit.unsupported();
+		return nukkit.getEyeHeight();
 	}
 
 	@Override
 	public double getEyeHeight(boolean ignoreSneaking) {
-		throw Pokkit.unsupported();
+		return nukkit.getEyeHeight();
 	}
 
 	@Override
@@ -166,7 +166,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public int getMaximumAir() {
-		throw Pokkit.unsupported();
+		return 400;
 	}
 
 	@Override
@@ -186,7 +186,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public int getRemainingAir() {
-		throw Pokkit.unsupported();
+		return nukkit.getAirTicks();
 	}
 
 	@Override
@@ -203,7 +203,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public boolean hasAI() {
-		throw Pokkit.unsupported();
+		return !nukkit.getDataFlag(cn.nukkit.entity.Entity.DATA_FLAGS, cn.nukkit.entity.Entity.DATA_FLAG_NO_AI);
 	}
 
 	@Override
@@ -270,8 +270,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public void setAI(boolean ai) {
-		throw Pokkit.unsupported();
-
+		nukkit.setDataFlag(cn.nukkit.entity.Entity.DATA_FLAGS, cn.nukkit.entity.Entity.DATA_FLAG_NO_AI, !ai);
 	}
 
 	@Override
@@ -282,14 +281,12 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public void setCollidable(boolean collidable) {
-		throw Pokkit.unsupported();
-
+		nukkit.setDataFlag(cn.nukkit.entity.Entity.DATA_FLAGS, cn.nukkit.entity.Entity.DATA_FLAG_HAS_COLLISION, collidable);
 	}
 
 	@Override
 	public void setGliding(boolean gliding) {
-		throw Pokkit.unsupported();
-
+		nukkit.setDataFlag(cn.nukkit.entity.Entity.DATA_FLAGS, cn.nukkit.entity.Entity.DATA_FLAG_GLIDING, gliding);
 	}
 
 	@Override
@@ -299,8 +296,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public void setLastDamage(double damage) {
-		throw Pokkit.unsupported();
-
+		nukkit.getLastDamageCause().setDamage((float) damage);
 	}
 
 	@Override
@@ -331,7 +327,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public void setRemainingAir(int ticks) {
-		throw Pokkit.unsupported();
+		nukkit.setAirTicks(ticks);
 	}
 
 	@Override

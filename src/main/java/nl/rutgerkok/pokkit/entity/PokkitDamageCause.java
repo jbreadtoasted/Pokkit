@@ -37,6 +37,8 @@ public final class PokkitDamageCause {
 				return DamageCause.MAGIC;
 			case LIGHTNING:
 				return DamageCause.LIGHTNING;
+			case HUNGER:
+				return DamageCause.STARVATION;
 			case CUSTOM:
 			default:
 				return DamageCause.CUSTOM;
