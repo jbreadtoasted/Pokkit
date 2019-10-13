@@ -37,10 +37,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
+import org.bukkit.boss.*;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -222,7 +219,26 @@ public final class CraftServer extends Server.Spigot implements Server {
 	@Override
 	public BossBar createBossBar(String arg0, BarColor arg1, BarStyle arg2, BarFlag... arg3) {
 		throw Pokkit.unsupported();
+	}
 
+	@Override
+	public KeyedBossBar createBossBar(NamespacedKey namespacedKey, String s, BarColor barColor, BarStyle barStyle, BarFlag... barFlags) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public Iterator<KeyedBossBar> getBossBars() {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public KeyedBossBar getBossBar(NamespacedKey namespacedKey) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public boolean removeBossBar(NamespacedKey namespacedKey) {
+		throw Pokkit.unsupported();
 	}
 
 	@Override
@@ -316,7 +332,7 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public boolean getAllowNether() {
-		return false;
+		return nukkit.getPropertyBoolean("allow-nether", true);
 	}
 
 	@Override
@@ -427,9 +443,8 @@ public final class CraftServer extends Server.Spigot implements Server {
 	}
 
 	@Override
-	public MapView getMap(short arg0) {
+	public List<Entity> selectEntities(CommandSender commandSender, String s) throws IllegalArgumentException {
 		throw Pokkit.unsupported();
-
 	}
 
 	@Override
@@ -603,6 +618,11 @@ public final class CraftServer extends Server.Spigot implements Server {
 	}
 
 	@Override
+	public <T extends Keyed> Iterable<Tag<T>> getTags(String s, Class<T> aClass) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
 	public int getTicksPerAnimalSpawns() {
 		return nukkit.getConfig().getInt("ticks-per.animal-spawns");
 	}
@@ -661,6 +681,11 @@ public final class CraftServer extends Server.Spigot implements Server {
 	@Override
 	public World getWorld(UUID uuid) {
 		return PokkitWorld.toBukkit(nukkit.getLevel(UniqueIdConversion.levelIdToIndex(uuid)));
+	}
+
+	@Override
+	public MapView getMap(int i) {
+		throw Pokkit.unsupported();
 	}
 
 	@Override

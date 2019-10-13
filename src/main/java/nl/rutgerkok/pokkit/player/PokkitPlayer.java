@@ -360,6 +360,11 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 	}
 
 	@Override
+	public int getClientViewDistance() {
+		return nukkit.getViewDistance();
+	}
+
+	@Override
 	public boolean getAllowFlight() {
 		return nukkit.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT);
 	}
@@ -1079,6 +1084,29 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 	}
 
 	@Override
+	public boolean sleep(Location location, boolean b) {
+		return nukkit.sleepOn(PokkitLocation.toNukkit(location));
+	}
+
+	@Override
+	public void wakeup(boolean b) {
+		nukkit.stopSleep();
+
+		if (b) {
+			nukkit.setSpawn(nukkit);
+		}
+	}
+
+	@Override
+	public Location getBedLocation() {
+		if (!nukkit.isSleeping()) {
+			throw new IllegalStateException("Cannot use getBedLocation() while player is not sleeping");
+		} else {
+			return PokkitLocation.toBukkit(nukkit);
+		}
+	}
+
+	@Override
 	public void setCompassTarget(Location arg0) {
 		// this may not be the best idea
 		SetSpawnPositionPacket pk = new SetSpawnPositionPacket();
@@ -1346,9 +1374,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 	@Override
 	public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX,
 			double offsetY, double offsetZ, double extra, T data) {
-		int id = 0;
-
-		id = PokkitParticle.toNukkit(particle);
+		int id = PokkitParticle.toNukkit(particle);
 
 		SplittableRandom random = new SplittableRandom();
 
@@ -1451,7 +1477,7 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 
 	@Override
 	public void updateCommands() {
-		// Silently unsupported!
+		nukkit.sendCommandData();
 	}
 
 	@Override

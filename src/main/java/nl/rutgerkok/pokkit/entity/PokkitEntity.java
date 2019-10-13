@@ -26,6 +26,7 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 import nl.rutgerkok.pokkit.Pokkit;
@@ -291,8 +292,18 @@ public class PokkitEntity implements Entity {
 	}
 
     @Override
+    public BoundingBox getBoundingBox() {
+        return new BoundingBox(nukkit.getBoundingBox().getMinX(), nukkit.getBoundingBox().getMinY(), nukkit.getBoundingBox().getMinZ(), nukkit.getBoundingBox().getMaxX(), nukkit.getBoundingBox().getMaxY(), nukkit.getBoundingBox().getMaxZ());
+    }
+
+    @Override
     public World getWorld() {
         return PokkitWorld.toBukkit(nukkit.getLevel());
+    }
+
+    @Override
+    public void setRotation(float v, float v1) {
+        nukkit.setRotation(v, v1);
     }
 
     @Override

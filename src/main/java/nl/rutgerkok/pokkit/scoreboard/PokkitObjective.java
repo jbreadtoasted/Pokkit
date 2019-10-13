@@ -2,12 +2,10 @@ package nl.rutgerkok.pokkit.scoreboard;
 
 import java.util.Objects;
 
+import nl.rutgerkok.pokkit.Pokkit;
 import org.apache.commons.lang.Validate;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.*;
 
 final class PokkitObjective implements Objective {
 
@@ -15,12 +13,14 @@ final class PokkitObjective implements Objective {
 	private String displayName;
 	private PokkitScoreboard scoreboardOrNull;
 	private final String criteria;
+	private RenderType renderType;
 
-	PokkitObjective(String name, String criteria, PokkitScoreboard scoreboard) {
+	PokkitObjective(String name, String criteria, PokkitScoreboard scoreboard, RenderType renderType) {
 		this.name = Objects.requireNonNull(name);
 		this.displayName = name;
 		this.scoreboardOrNull = Objects.requireNonNull(scoreboard);
 		this.criteria = Objects.requireNonNull(criteria);
+		this.renderType = renderType;
 	}
 
 	private PokkitScoreboard checkScoreboard() throws IllegalStateException {
@@ -46,6 +46,16 @@ final class PokkitObjective implements Objective {
 	@Override
 	public DisplaySlot getDisplaySlot() throws IllegalStateException {
 		return checkScoreboard().getDisplaySlot(this);
+	}
+
+	@Override
+	public void setRenderType(RenderType renderType) throws IllegalStateException {
+		this.renderType = renderType;
+	}
+
+	@Override
+	public RenderType getRenderType() throws IllegalStateException {
+		return renderType;
 	}
 
 	@Override
@@ -95,5 +105,4 @@ final class PokkitObjective implements Objective {
 		PokkitScoreboard scoreboard = checkScoreboard();
 		scoreboard.markObjectiveUnregistered(this);
 	}
-
 }

@@ -108,6 +108,36 @@ public class PokkitHumanEntity extends PokkitLivingEntity implements HumanEntity
 	}
 
 	@Override
+	public Location getBedSpawnLocation() {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public void setBedSpawnLocation(Location location) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public void setBedSpawnLocation(Location location, boolean b) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public boolean sleep(Location location, boolean b) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public void wakeup(boolean b) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public Location getBedLocation() {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
 	public boolean hasCooldown(Material material) {
 		throw Pokkit.unsupported();
 	}

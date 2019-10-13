@@ -5,10 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -30,6 +27,9 @@ import cn.nukkit.block.BlockAir;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemBlock;
 import cn.nukkit.level.biome.EnumBiome;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
 
 /**
  * Converts between Nukkit and Bukkit blocks.
@@ -74,8 +74,7 @@ public final class PokkitBlock implements Block {
 
 	@Override
 	public Biome getBiome() {
-		throw Pokkit.unsupported();
-
+		return Biome.valueOf(cn.nukkit.level.biome.Biome.getBiome(nukkit.getLevel().getBiomeId((int) nukkit.x, (int) nukkit.z)).getName().toUpperCase().replace(" ", "_")); // TODO: check this
 	}
 
 	@Override
@@ -295,6 +294,16 @@ public final class PokkitBlock implements Block {
 	@Override
 	public boolean isPassable() {
 		return nukkit.canPassThrough();
+	}
+
+	@Override
+	public RayTraceResult rayTrace(Location location, Vector vector, double v, FluidCollisionMode fluidCollisionMode) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public BoundingBox getBoundingBox() {
+		return new BoundingBox(nukkit.getBoundingBox().getMinX(), nukkit.getBoundingBox().getMinY(), nukkit.getBoundingBox().getMinZ(), nukkit.getBoundingBox().getMaxX(), nukkit.getBoundingBox().getMaxY(), nukkit.getBoundingBox().getMaxZ());
 	}
 
 	@Override

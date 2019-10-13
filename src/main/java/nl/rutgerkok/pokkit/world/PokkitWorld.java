@@ -5,7 +5,8 @@ import cn.nukkit.level.generator.Flat;
 import cn.nukkit.level.generator.object.tree.ObjectTree;
 import cn.nukkit.math.NukkitRandom;
 import cn.nukkit.utils.Config;
-import org.bukkit.StructureType;
+import org.bukkit.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,23 +16,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.SplittableRandom;
 import java.util.UUID;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.ChunkSnapshot;
-import org.bukkit.Difficulty;
-import org.bukkit.Effect;
-import org.bukkit.GameRule;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.SoundCategory;
-import org.bukkit.TreeType;
-import org.bukkit.World;
-import org.bukkit.WorldBorder;
-import org.bukkit.WorldType;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
@@ -49,7 +36,9 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Consumer;
+import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 import nl.rutgerkok.pokkit.Pokkit;
@@ -464,7 +453,61 @@ public final class PokkitWorld implements World {
 	@Override
 	public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z) {
 		throw Pokkit.unsupported();
+	}
 
+	@Override
+	public Collection<Entity> getNearbyEntities(Location location, double v, double v1, double v2, Predicate<Entity> predicate) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public Collection<Entity> getNearbyEntities(BoundingBox boundingBox) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public Collection<Entity> getNearbyEntities(BoundingBox boundingBox, Predicate<Entity> predicate) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location location, Vector vector, double v) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location location, Vector vector, double v, double v1) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location location, Vector vector, double v, Predicate<Entity> predicate) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location location, Vector vector, double v, double v1, Predicate<Entity> predicate) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(Location location, Vector vector, double v) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(Location location, Vector vector, double v, FluidCollisionMode fluidCollisionMode) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(Location location, Vector vector, double v, FluidCollisionMode fluidCollisionMode, boolean b) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTrace(Location location, Vector vector, double v, FluidCollisionMode fluidCollisionMode, boolean b, double v1, Predicate<Entity> predicate) {
+		throw Pokkit.unsupported();
 	}
 
 	@Override
@@ -678,6 +721,21 @@ public final class PokkitWorld implements World {
 	@Override
 	public boolean refreshChunk(int x, int z) {
 		return false; // Silently unsupported!
+	}
+
+	@Override
+	public boolean isChunkForceLoaded(int i, int i1) {
+		return false; // silently unsupported
+	}
+
+	@Override
+	public void setChunkForceLoaded(int i, int i1, boolean b) {
+		// silently unsupported
+	}
+
+	@Override
+	public Collection<Chunk> getForceLoadedChunks() {
+		throw Pokkit.unsupported();
 	}
 
 	@Override

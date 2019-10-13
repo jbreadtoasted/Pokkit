@@ -98,6 +98,16 @@ public final class PokkitChunk implements Chunk {
 	}
 
 	@Override
+	public boolean isForceLoaded() {
+		return false; // silently unsupported
+	}
+
+	@Override
+	public void setForceLoaded(boolean b) {
+		// silently unsupported
+	}
+
+	@Override
 	public boolean load() {
 		return world.loadChunk(chunkX, chunkZ, true);
 	}

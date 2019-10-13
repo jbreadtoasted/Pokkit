@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -17,6 +18,8 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 import nl.rutgerkok.pokkit.Pokkit;
@@ -138,6 +141,26 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public Block getTargetBlockExact(int i) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public Block getTargetBlockExact(int i, FluidCollisionMode fluidCollisionMode) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(double v) {
+		throw Pokkit.unsupported();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(double v, FluidCollisionMode fluidCollisionMode) {
 		throw Pokkit.unsupported();
 	}
 
@@ -347,5 +370,15 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 		return bukkitMaterials.stream()
 				.map(material -> PokkitBlockData.createBlockData(material, 0).getNukkitId())
 				.toArray(Integer[]::new);
+	}
+
+	@Override
+	public BoundingBox getBoundingBox() {
+		return new BoundingBox(nukkit.getBoundingBox().getMinX(), nukkit.getBoundingBox().getMinY(), nukkit.getBoundingBox().getMinZ(), nukkit.getBoundingBox().getMaxX(), nukkit.getBoundingBox().getMaxY(), nukkit.getBoundingBox().getMaxZ());
+	}
+
+	@Override
+	public void setRotation(float v, float v1) {
+		nukkit.setRotation(v, v1);
 	}
 }
