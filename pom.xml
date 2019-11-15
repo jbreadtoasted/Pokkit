@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.rutgerkok</groupId>
 	<artifactId>Pokkit</artifactId>
-	<version>0.9</version>
+	<version>0.9.1</version>
 	<name>Pokkit</name>
 	<description>Run Bukkit and Spigot plugins on Nukkit!</description>
 	<properties>
@@ -50,6 +50,10 @@
 			<artifactId>nukkit</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<scope>provided</scope>
+			<!-- Use to build for experimental Nukkit builds
+            <scope>system</scope>
+            <systemPath>${basedir}/nukkit-1.0-SNAPSHOT.jar</systemPath>
+			-->
 		</dependency>
 	</dependencies>
 	<repositories>

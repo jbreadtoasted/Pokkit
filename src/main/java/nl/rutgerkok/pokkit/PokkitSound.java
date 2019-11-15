@@ -64,7 +64,7 @@ public final class PokkitSound {
 		case BLOCK_FIRE_EXTINGUISH:
 			return cn.nukkit.level.Sound.RANDOM_FIZZ;
 		case BLOCK_FURNACE_FIRE_CRACKLE:
-			return cn.nukkit.level.Sound.FURNACE_LIT;
+			return cn.nukkit.level.Sound.BLOCK_FURNACE_LIT;
 		case BLOCK_GLASS_BREAK:
 			return cn.nukkit.level.Sound.RANDOM_GLASS;
 		case BLOCK_GLASS_FALL:
