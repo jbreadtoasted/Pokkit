@@ -12,7 +12,7 @@ import cn.nukkit.block.BlockID;
  *
  */
 @SuppressWarnings("deprecation")
-final class BlockMap {
+public final class BlockMap {
 
 	private static Material[] nukkitToBukkit = new Material[500];
 	private static char[] bukkitToNukkit = new char[Material.values().length];
@@ -526,6 +526,16 @@ final class BlockMap {
 			return Material.STONE;
 		}
 		return material;
+	}
+
+	public static Material getMaterialOrNull(int nukkitId) {
+		if (nukkitId < 0) {
+			return null;
+		}
+		if (nukkitId >= nukkitToBukkit.length) {
+			return null;
+		}
+		return nukkitToBukkit[nukkitId];
 	}
 
 	/**

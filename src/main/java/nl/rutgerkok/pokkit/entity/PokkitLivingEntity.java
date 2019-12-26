@@ -214,7 +214,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public boolean getRemoveWhenFarAway() {
-		throw Pokkit.unsupported();
+		return false;
 	}
 
 	@Override
@@ -257,7 +257,7 @@ public class PokkitLivingEntity extends PokkitEntity implements LivingEntity {
 
 	@Override
 	public boolean isLeashed() {
-		throw Pokkit.unsupported();
+		return false; // Not supported by Nukkit yet
 	}
 
 	@Override

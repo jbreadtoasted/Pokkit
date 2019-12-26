@@ -26,7 +26,7 @@ public final class Pokkit {
 	/**
 	 * Bukkit version. Mutable, so exposed through {@link #getBukkitVersion()}.
 	 */
-	static String BUKKIT_VERSION = "1.13.1-R0.1-SNAPSHOT";
+	static String BUKKIT_VERSION = "1.13.2-R0.1-SNAPSHOT";
 
 	/**
 	 * Makes sure that the given expression is true. If not, an exception is

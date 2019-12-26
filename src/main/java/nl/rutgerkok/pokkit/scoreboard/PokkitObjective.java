@@ -2,7 +2,6 @@ package nl.rutgerkok.pokkit.scoreboard;
 
 import java.util.Objects;
 
-import nl.rutgerkok.pokkit.Pokkit;
 import org.apache.commons.lang.Validate;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.scoreboard.*;

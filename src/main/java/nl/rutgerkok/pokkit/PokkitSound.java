@@ -985,7 +985,7 @@ public final class PokkitSound {
 		case ENTITY_DOLPHIN_SWIM:
 			return cn.nukkit.level.Sound.MOB_DOLPHIN_SWIM;
 		case ENTITY_DRAGON_FIREBALL_EXPLODE:
-			break;
+			return cn.nukkit.level.Sound.RANDOM_EXPLODE;
 		case ENTITY_DROWNED_AMBIENT:
 			return cn.nukkit.level.Sound.MOB_DROWNED_SAY;
 		case ENTITY_DROWNED_AMBIENT_WATER:

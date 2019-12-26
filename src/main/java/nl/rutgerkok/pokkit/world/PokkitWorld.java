@@ -4,7 +4,6 @@ import cn.nukkit.Server;
 import cn.nukkit.level.generator.Flat;
 import cn.nukkit.level.generator.object.tree.ObjectTree;
 import cn.nukkit.math.NukkitRandom;
-import cn.nukkit.utils.Config;
 import org.bukkit.*;
 
 import java.io.File;
