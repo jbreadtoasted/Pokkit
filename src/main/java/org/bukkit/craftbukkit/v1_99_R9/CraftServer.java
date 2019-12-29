@@ -2,23 +2,15 @@ package org.bukkit.craftbukkit.v1_99_R9;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import cn.nukkit.permission.BanEntry;
 import com.google.common.collect.ImmutableMap;
 
+import nl.rutgerkok.pokkit.*;
 import org.bukkit.BanList;
 import org.bukkit.BanList.Type;
 import org.bukkit.GameMode;
@@ -68,12 +60,6 @@ import org.bukkit.util.CachedServerIcon;
 
 import net.md_5.bungee.api.chat.BaseComponent;
 
-import nl.rutgerkok.pokkit.Pokkit;
-import nl.rutgerkok.pokkit.PokkitGameMode;
-import nl.rutgerkok.pokkit.PokkitHelpMap;
-import nl.rutgerkok.pokkit.PokkitPluginMessenger;
-import nl.rutgerkok.pokkit.PokkitUnsafe;
-import nl.rutgerkok.pokkit.UniqueIdConversion;
 import nl.rutgerkok.pokkit.blockdata.PokkitBlockData;
 import nl.rutgerkok.pokkit.command.PokkitCommandFetcher;
 import nl.rutgerkok.pokkit.command.PokkitCommandSender;
@@ -346,15 +332,20 @@ public final class CraftServer extends Server.Spigot implements Server {
 	}
 
 	@Override
-	public BanList getBanList(Type arg0) {
-		throw Pokkit.unsupported();
-
+	public BanList getBanList(Type type) {
+		switch (type) {
+			case IP:
+				return PokkitBanList.toBukkit(nukkit.getIPBans());
+			case NAME:
+			default:
+				return PokkitBanList.toBukkit(nukkit.getNameBans());
+		}
 	}
 
 	@Override
 	public Set<OfflinePlayer> getBannedPlayers() {
-		throw Pokkit.unsupported();
-
+		return nukkit.getNameBans().getEntires().values()
+				.stream().map(BanEntry::getName).map(this::getOfflinePlayer).collect(Collectors.toSet());
 	}
 
 	@Override

@@ -52,6 +52,7 @@ import nl.rutgerkok.pokkit.item.PokkitItemStack;
 import nl.rutgerkok.pokkit.metadata.WorldMetadataStore;
 import nl.rutgerkok.pokkit.particle.PokkitParticle;
 import nl.rutgerkok.pokkit.player.PokkitPlayer;
+import nl.rutgerkok.pokkit.world.biome.PokkitBiome;
 
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.level.Explosion;
@@ -215,8 +216,7 @@ public final class PokkitWorld implements World {
 
 	@Override
 	public Biome getBiome(int x, int z) {
-		throw Pokkit.unsupported();
-
+		return PokkitBiome.toBukkit(nukkit.getBiomeId(x, z));
 	}
 
 	@Override
@@ -777,9 +777,8 @@ public final class PokkitWorld implements World {
 	}
 
 	@Override
-	public void setBiome(int x, int z, Biome bio) {
-		throw Pokkit.unsupported();
-
+	public void setBiome(int x, int z, Biome biome) {
+		nukkit.setBiomeId(x, z, PokkitBiome.toNukkit(biome));
 	}
 
 	@Override

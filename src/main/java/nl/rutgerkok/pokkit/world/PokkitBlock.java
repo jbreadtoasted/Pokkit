@@ -22,6 +22,7 @@ import nl.rutgerkok.pokkit.blockdata.PokkitBlockData;
 import nl.rutgerkok.pokkit.blockstate.PokkitBlockState;
 import nl.rutgerkok.pokkit.item.PokkitItemStack;
 import nl.rutgerkok.pokkit.metadata.BlockMetadataStore;
+import nl.rutgerkok.pokkit.world.biome.PokkitBiome;
 
 import cn.nukkit.block.BlockAir;
 import cn.nukkit.item.Item;
@@ -74,7 +75,7 @@ public final class PokkitBlock implements Block {
 
 	@Override
 	public Biome getBiome() {
-		return Biome.valueOf(cn.nukkit.level.biome.Biome.getBiome(nukkit.getLevel().getBiomeId((int) nukkit.x, (int) nukkit.z)).getName().toUpperCase().replace(" ", "_")); // TODO: check this
+		return PokkitBiome.toBukkit(nukkit.getLevel().getBiomeId(getX(), getZ()));
 	}
 
 	@Override
@@ -312,9 +313,8 @@ public final class PokkitBlock implements Block {
 	}
 
 	@Override
-	public void setBiome(Biome bio) {
-		throw Pokkit.unsupported();
-
+	public void setBiome(Biome biome) {
+		nukkit.getLevel().setBiomeId(getX(), getZ(), (byte) PokkitBiome.toNukkit(biome));
 	}
 
 	@Override
