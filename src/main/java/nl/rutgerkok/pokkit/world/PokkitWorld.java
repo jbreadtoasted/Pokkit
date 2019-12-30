@@ -778,7 +778,7 @@ public final class PokkitWorld implements World {
 
 	@Override
 	public void setBiome(int x, int z, Biome biome) {
-		nukkit.setBiomeId(x, z, PokkitBiome.toNukkit(biome));
+		nukkit.setBiomeId(x, z, (byte) PokkitBiome.toNukkit(biome));
 	}
 
 	@Override
