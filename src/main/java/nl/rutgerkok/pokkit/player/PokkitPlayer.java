@@ -915,6 +915,11 @@ public class PokkitPlayer extends PokkitHumanEntity implements Player {
 		if (nukkitSound == null) {
 			return;
 		}
+
+		if (pitch < 0) pitch = 0;
+		if (volume < 0) volume = 0;
+		if (volume > 1) volume = 1;
+
 		Vector3 pos = PokkitVector.toNukkit(location.toVector());
 		nukkit.level.addSound(pos, nukkitSound, volume, pitch);
 	}
