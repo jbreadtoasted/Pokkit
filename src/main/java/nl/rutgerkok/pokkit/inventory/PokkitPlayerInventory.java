@@ -2,6 +2,7 @@ package nl.rutgerkok.pokkit.inventory;
 
 import java.util.Arrays;
 
+import cn.nukkit.Player;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
@@ -72,7 +73,9 @@ public final class PokkitPlayerInventory extends PokkitLiveInventory implements 
 
 	@Override
 	public ItemStack getItemInOffHand() {
-		return new ItemStack(Material.AIR);
+		ItemStack item = PokkitItemStack.toBukkitCopy(((Player) nukkit.getHolder()).getOffhandInventory().getItem(0));
+		if (item == null) return new ItemStack(Material.AIR);
+		return item;
 	}
 
 	@Override
@@ -131,8 +134,7 @@ public final class PokkitPlayerInventory extends PokkitLiveInventory implements 
 
 	@Override
 	public void setItemInOffHand(ItemStack item) {
-		throw Pokkit.unsupported();
-
+		((Player) nukkit.getHolder()).getOffhandInventory().setItem(0, PokkitItemStack.toNukkitCopy(item));
 	}
 
 	@Override
