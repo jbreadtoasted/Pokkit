@@ -1,5 +1,6 @@
 package nl.rutgerkok.pokkit.item;
 
+import cn.nukkit.Server;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -66,6 +67,7 @@ public final class PokkitItemStack {
 		if (material == null) {
 			material = nl.rutgerkok.pokkit.blockdata.BlockMap.getMaterialOrNull(nukkit.getId());
 			if (material == null) {
+				Server.getInstance().getLogger().info("[Pokkit|Debug] toBukkitCopy null for " + (nukkit == null ? "null" : nukkit.getId()));
 				return null;
 			}
 		}

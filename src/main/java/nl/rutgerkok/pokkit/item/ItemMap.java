@@ -8,7 +8,7 @@ import cn.nukkit.item.ItemID;
 @SuppressWarnings("deprecation")
 public class ItemMap {
 
-	private static Material[] nukkitToBukkit = new Material[700];
+	private static Material[] nukkitToBukkit = new Material[750];
 	private static char[] bukkitToNukkit = new char[Material.values().length];
 
 	static {
@@ -227,10 +227,10 @@ public class ItemMap {
 
 		// Unsupported items
 		registerNukkitToBukkit(ItemID.LEATHER_HORSE_ARMOR, Material.LEATHER);
-		registerNukkitToBukkit(734, Material.BOWL); //SUSPICIOUS_STEW
-		registerNukkitToBukkit(471, Material.BOW); //CROSSBOW
-		registerNukkitToBukkit(736, Material.STICK); //HONEYCOMB
-		registerNukkitToBukkit(737, Material.GLASS_BOTTLE); //HONEY_BOTTLE
+		registerNukkitToBukkit(734, Material.LEATHER); //SUSPICIOUS_STEW
+		registerNukkitToBukkit(471, Material.LEATHER); //CROSSBOW
+		registerNukkitToBukkit(736, Material.LEATHER); //HONEYCOMB
+		registerNukkitToBukkit(737, Material.LEATHER); //HONEY_BOTTLE
 
 		// Legacy items
 		registerBukkitToNukkit(ItemID.IRON_SHOVEL, Material.LEGACY_IRON_SPADE);
