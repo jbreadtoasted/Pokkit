@@ -533,7 +533,7 @@ public final class BlockMap {
 			return null;
 		}
 		if (nukkitId >= nukkitToBukkit.length) {
-			return null;
+			return Material.AIR;
 		}
 		return nukkitToBukkit[nukkitId];
 	}

@@ -47,7 +47,9 @@ public final class PokkitItemStack {
 			if (meta instanceof Damageable) {
 				nukkit.setDamage(((Damageable) meta).getDamage());
 			}
-			nukkit.setNamedTag(meta.getTag());
+			if (meta != null) {
+				nukkit.setNamedTag(meta.getTag());
+			}
 		} else {
 			nukkit.clearNamedTag();
 		}
@@ -56,9 +58,8 @@ public final class PokkitItemStack {
 	/**
 	 * Creates a Bukkit copy of the item stack. Changes to the returned item stack are not mirrored in the original Nukkit stack.
 	 *
-	 * @param nukkit
-	 *            The Nukkit stack.
-	 * @return A {@link ItemStack}, or null if Nukkit has an air or null stack.
+	 * @param nukkit The Nukkit stack.
+	 * @return A {@link ItemStack}, or null if Nukkit has a null stack.
 	 */
 	public static ItemStack toBukkitCopy(cn.nukkit.item.Item nukkit) {
 		Material material = ItemMap.fromNukkitOrNull(nukkit);
@@ -79,7 +80,7 @@ public final class PokkitItemStack {
 		return bukkit;
 	}
 
-	public static final cn.nukkit.item.Item toNukkitCopy(ItemStack bukkit) {
+	public static cn.nukkit.item.Item toNukkitCopy(ItemStack bukkit) {
 		if (bukkit == null) {
 			return Item.get(Item.AIR);
 		}
@@ -93,7 +94,9 @@ public final class PokkitItemStack {
 			if (meta instanceof Damageable) {
 				nukkit.setDamage(((Damageable) meta).getDamage());
 			}
-			nukkit.setNamedTag(meta.getTag());
+			if (meta != null) {
+				nukkit.setNamedTag(meta.getTag());
+			}
 		}
 
 		return nukkit;
