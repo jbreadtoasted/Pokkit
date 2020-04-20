@@ -28,6 +28,8 @@ public final class PokkitInventoryType {
 		twoWay(cn.nukkit.inventory.InventoryType.ENDER_CHEST, InventoryType.ENDER_CHEST);
 		twoWay(cn.nukkit.inventory.InventoryType.SHULKER_BOX, InventoryType.SHULKER_BOX);
 		twoWay(cn.nukkit.inventory.InventoryType.BEACON, InventoryType.BEACON);
+		twoWay(cn.nukkit.inventory.InventoryType.MINECART_CHEST, InventoryType.CHEST); // TODO check this
+		twoWay(cn.nukkit.inventory.InventoryType.MINECART_HOPPER, InventoryType.CHEST); // TODO check this
 
 		bukkitToNukkit.put(InventoryType.MERCHANT, cn.nukkit.inventory.InventoryType.ANVIL);
 		bukkitToNukkit.put(InventoryType.CREATIVE, cn.nukkit.inventory.InventoryType.PLAYER);
