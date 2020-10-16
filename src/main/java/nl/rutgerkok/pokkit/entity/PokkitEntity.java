@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import cn.nukkit.entity.item.*;
+import cn.nukkit.entity.mob.*;
+import cn.nukkit.entity.passive.*;
+import cn.nukkit.entity.projectile.*;
+import cn.nukkit.entity.weather.EntityLightning;
 import com.google.common.base.Strings;
 
 import nl.rutgerkok.pokkit.world.PokkitBlockFace;
@@ -211,64 +216,177 @@ public class PokkitEntity implements Entity {
     @Override
     public EntityType getType() {
         switch (nukkit.getNetworkId()) {
-        case 17:
-            return EntityType.SQUID;
-        case 10:
-            return EntityType.CHICKEN;
-        case 24:
-            return EntityType.DONKEY;
-        case 23:
-            return EntityType.HORSE;
-        case 16:
-            return EntityType.MUSHROOM_COW;
-        case 25:
-            return EntityType.MULE;
-        case 22:
-            return EntityType.OCELOT;
-        case 12:
-            return EntityType.PIG;
-        case 18:
-            return EntityType.RABBIT;
-        case 13:
-            return EntityType.SHEEP;
-        case 26:
-            return EntityType.SKELETON_HORSE;
-        case 27:
-            return EntityType.ZOMBIE_HORSE;
-        case 19:
-            return EntityType.BAT;
-        case 43:
-            return EntityType.BLAZE;
-        case 41:
-            return EntityType.GHAST;
-        case 40:
-            return EntityType.CAVE_SPIDER;
-        case 33:
-            return EntityType.CREEPER;
-        case 38:
-            return EntityType.ENDERMAN;
-        case 20:
-            return EntityType.IRON_GOLEM;
-        case 36:
-            return EntityType.PIG_ZOMBIE;
-        case 39:
-            return EntityType.SILVERFISH;
-        case 34:
-            return EntityType.SKELETON;
-        case 21:
-            return EntityType.IRON_GOLEM;
-        case 35:
-            return EntityType.SPIDER;
-        case 45:
-            return EntityType.WITCH;
-        case 14:
-            return EntityType.WOLF;
-        case 32:
-            return EntityType.ZOMBIE;
-        case 44:
-            return EntityType.ZOMBIE_VILLAGER;
-        default:
-            return EntityType.UNKNOWN;
+            case EntityBat.NETWORK_ID:
+                return EntityType.BAT;
+            case EntityChicken.NETWORK_ID:
+                return EntityType.CHICKEN;
+            case EntityCod.NETWORK_ID:
+                return EntityType.COD;
+            case EntityCow.NETWORK_ID:
+                return EntityType.COW;
+            case EntityDolphin.NETWORK_ID:
+                return EntityType.DOLPHIN;
+            case EntityDonkey.NETWORK_ID:
+                return EntityType.DONKEY;
+            case EntityHorse.NETWORK_ID:
+                return EntityType.HORSE;
+            case EntityLlama.NETWORK_ID:
+                return EntityType.LLAMA;
+            case EntityMooshroom.NETWORK_ID:
+                return EntityType.MUSHROOM_COW;
+            case EntityMule.NETWORK_ID:
+                return EntityType.MULE;
+            case EntityOcelot.NETWORK_ID:
+                return EntityType.OCELOT;
+            case EntityParrot.NETWORK_ID:
+                return EntityType.PARROT;
+            case EntityPig.NETWORK_ID:
+                return EntityType.PIG;
+            case EntityPolarBear.NETWORK_ID:
+                return EntityType.POLAR_BEAR;
+            case EntityPufferfish.NETWORK_ID:
+                return EntityType.PUFFERFISH;
+            case EntityRabbit.NETWORK_ID:
+                return EntityType.RABBIT;
+            case EntitySalmon.NETWORK_ID:
+                return EntityType.SALMON;
+            case EntitySheep.NETWORK_ID:
+                return EntityType.SHEEP;
+            case EntitySkeletonHorse.NETWORK_ID:
+                return EntityType.SKELETON_HORSE;
+            case EntitySquid.NETWORK_ID:
+                return EntityType.SQUID;
+            case EntityTropicalFish.NETWORK_ID:
+                return EntityType.TROPICAL_FISH;
+            case EntityTurtle.NETWORK_ID:
+                return EntityType.TURTLE;
+            case EntityVillager.NETWORK_ID:
+            case EntityVillagerV1.NETWORK_ID:
+                return EntityType.VILLAGER;
+            case EntityWolf.NETWORK_ID:
+                return EntityType.WOLF;
+            case EntityBlaze.NETWORK_ID:
+                return EntityType.BLAZE;
+            case EntityCaveSpider.NETWORK_ID:
+                return EntityType.CAVE_SPIDER;
+            case EntityCreeper.NETWORK_ID:
+                return EntityType.CREEPER;
+            case EntityDrowned.NETWORK_ID:
+                return EntityType.DROWNED;
+            case EntityElderGuardian.NETWORK_ID:
+                return EntityType.ELDER_GUARDIAN;
+            case EntityEnderDragon.NETWORK_ID:
+                return EntityType.ENDER_DRAGON;
+            case EntityEnderman.NETWORK_ID:
+                return EntityType.ENDERMAN;
+            case EntityEndermite.NETWORK_ID:
+                return EntityType.ENDERMITE;
+            case EntityEvoker.NETWORK_ID:
+                return EntityType.EVOKER;
+            case EntityGhast.NETWORK_ID:
+                return EntityType.GHAST;
+            case EntityGuardian.NETWORK_ID:
+                return EntityType.GUARDIAN;
+            case EntityHusk.NETWORK_ID:
+                return EntityType.HUSK;
+            case EntityMagmaCube.NETWORK_ID:
+                return EntityType.MAGMA_CUBE;
+            case EntityPhantom.NETWORK_ID:
+                return EntityType.PHANTOM;
+            case EntityShulker.NETWORK_ID:
+                return EntityType.SHULKER;
+            case EntitySilverfish.NETWORK_ID:
+                return EntityType.SILVERFISH;
+            case EntitySkeleton.NETWORK_ID:
+                return EntityType.SKELETON;
+            case EntitySlime.NETWORK_ID:
+                return EntityType.SLIME;
+            case EntitySnowGolem.NETWORK_ID:
+                return EntityType.SNOWMAN;
+            case EntitySpider.NETWORK_ID:
+                return EntityType.SPIDER;
+            case EntityStray.NETWORK_ID:
+                return EntityType.STRAY;
+            case EntityVex.NETWORK_ID:
+                return EntityType.VEX;
+            case EntityVindicator.NETWORK_ID:
+                return EntityType.VINDICATOR;
+            case EntityWitch.NETWORK_ID:
+                return EntityType.WITCH;
+            case EntityWither.NETWORK_ID:
+                return EntityType.WITHER;
+            case EntityWitherSkeleton.NETWORK_ID:
+                return EntityType.WITHER_SKELETON;
+            case EntityZombie.NETWORK_ID:
+                return EntityType.ZOMBIE;
+            case EntityZombiePigman.NETWORK_ID:
+                return EntityType.PIG_ZOMBIE;
+            case EntityZombieVillager.NETWORK_ID:
+            case EntityZombieVillagerV1.NETWORK_ID:
+                return EntityType.ZOMBIE_VILLAGER;
+            case 20:
+                return EntityType.IRON_GOLEM;
+            case 61:
+                return EntityType.ARMOR_STAND;
+            case 76:
+                return EntityType.SHULKER_BULLET;
+            case 79:
+                return EntityType.DRAGON_FIREBALL;
+            case 85:
+                return EntityType.FIREBALL;
+            case 88:
+                return EntityType.LEASH_HITCH;
+            case 89:
+            case 91:
+                return EntityType.WITHER_SKULL;
+            case 94:
+                return EntityType.SMALL_FIREBALL;
+            case 100:
+                return EntityType.MINECART_COMMAND;
+            case 101:
+                return EntityType.LINGERING_POTION;
+            case 102:
+                return EntityType.LLAMA_SPIT;
+            case EntityLightning.NETWORK_ID:
+                return EntityType.LIGHTNING;
+            case EntityArrow.NETWORK_ID:
+                return EntityType.ARROW;
+            case EntityEgg.NETWORK_ID:
+                return EntityType.EGG;
+            case EntityEnderPearl.NETWORK_ID:
+                return EntityType.ENDER_PEARL;
+            case EntitySnowball.NETWORK_ID:
+                return EntityType.SNOWBALL;
+            case EntityThrownTrident.NETWORK_ID:
+                return EntityType.TRIDENT;
+            case EntityBoat.NETWORK_ID:
+                return EntityType.BOAT;
+            case EntityEndCrystal.NETWORK_ID:
+                return EntityType.ENDER_CRYSTAL;
+            case EntityFallingBlock.NETWORK_ID:
+                return EntityType.FALLING_BLOCK;
+            case EntityFirework.NETWORK_ID:
+                return EntityType.FIREWORK;
+            case EntityFishingHook.NETWORK_ID:
+                return EntityType.FISHING_HOOK;
+            case EntityItem.NETWORK_ID:
+                return EntityType.DROPPED_ITEM;
+            case EntityMinecartChest.NETWORK_ID:
+                return EntityType.MINECART_CHEST;
+            case EntityMinecartHopper.NETWORK_ID:
+                return EntityType.MINECART_HOPPER;
+            case EntityMinecartTNT.NETWORK_ID:
+                return EntityType.MINECART_TNT;
+            case EntityPainting.NETWORK_ID:
+                return EntityType.PAINTING;
+            case EntityPotion.NETWORK_ID:
+                return EntityType.SPLASH_POTION;
+            case EntityPrimedTNT.NETWORK_ID:
+                return EntityType.PRIMED_TNT;
+            case EntityXPOrb.NETWORK_ID:
+                return EntityType.EXPERIENCE_ORB;
+            default:
+                return EntityType.UNKNOWN;
         }
     }
 
@@ -508,7 +626,7 @@ public class PokkitEntity implements Entity {
 
     @Override
     public void setOp(boolean value) {
-        throw Pokkit.unsupported();
+        //entities can't be op
     }
 
     @Override

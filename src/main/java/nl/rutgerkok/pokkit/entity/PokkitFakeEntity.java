@@ -417,8 +417,7 @@ abstract class PokkitFakeEntity implements Entity {
 
 	@Override
 	public void setOp(boolean value) {
-		throw Pokkit.unsupported();
-
+		//entities can't be op
 	}
 
 	@Override

@@ -92,7 +92,7 @@ public class PokkitPlugin implements cn.nukkit.plugin.Plugin {
 
 		@Override
 		public org.bukkit.Server getServer() {
-			throw Pokkit.unsupported();
+			return Bukkit.getServer();
 		}
 
 		@Override

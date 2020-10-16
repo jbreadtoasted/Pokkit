@@ -172,8 +172,8 @@ public final class CraftServer extends Server.Spigot implements Server {
 
 	@Override
 	public void clearRecipes() {
-		throw Pokkit.unsupported();
-
+		nukkit.getCraftingManager().recipes.clear();
+		nukkit.getCraftingManager().rebuildPacket();
 	}
 
 	@Override
