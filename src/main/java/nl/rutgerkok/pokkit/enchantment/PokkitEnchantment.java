@@ -1,6 +1,8 @@
 package nl.rutgerkok.pokkit.enchantment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.NamespacedKey;
@@ -8,8 +10,8 @@ import org.bukkit.enchantments.Enchantment;
 
 public class PokkitEnchantment {
 
-	private static Enchantment[] nukkitToBukkit = new Enchantment[33];
-	private static Map<NamespacedKey, Integer> bukkitToNukkit = new HashMap<>();
+	private static final Enchantment[] nukkitToBukkit = new Enchantment[37];
+	private static final Map<NamespacedKey, Integer> bukkitToNukkit = new HashMap<>();
 
 	static {
 		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_PROTECTION_ALL, Enchantment.PROTECTION_ENVIRONMENTAL);
@@ -45,6 +47,12 @@ public class PokkitEnchantment {
 		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_TRIDENT_LOYALTY, Enchantment.LOYALTY);
 		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_TRIDENT_RIPTIDE, Enchantment.RIPTIDE);
 		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_TRIDENT_CHANNELING, Enchantment.CHANNELING);
+
+		//Not in Bukkit 1.13.2
+		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_CROSSBOW_MULTISHOT, Enchantment.CHANNELING);
+		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_CROSSBOW_PIERCING, Enchantment.CHANNELING);
+		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_CROSSBOW_QUICK_CHARGE, Enchantment.CHANNELING);
+		twoWay(cn.nukkit.item.enchantment.Enchantment.ID_SOUL_SPEED, Enchantment.CHANNELING);
 	}
 
 	/**
@@ -55,12 +63,20 @@ public class PokkitEnchantment {
 			// Already initialized
 			return;
 		}
+
+		List<NamespacedKey> registered = new ArrayList();
 		for (cn.nukkit.item.enchantment.Enchantment nukkitEnchantment : cn.nukkit.item.enchantment.Enchantment.getEnchantments()) {
 			Enchantment bukkitWrapper = toBukkit(nukkitEnchantment.getId());
-			Enchantment bukkitImpl = new PokkitEnchantmentImpl(nukkitEnchantment, bukkitWrapper.getKey());
 
+			if (registered.contains(bukkitWrapper.getKey())) {
+				continue; //Ignore unsupported enchantments that are mapped to other values
+			}
+
+			Enchantment bukkitImpl = new PokkitEnchantmentImpl(nukkitEnchantment, bukkitWrapper.getKey());
 			Enchantment.registerEnchantment(bukkitImpl);
+			registered.add(bukkitWrapper.getKey());
 		}
+
 		Enchantment.stopAcceptingRegistrations();
 	}
 
@@ -94,14 +110,17 @@ public class PokkitEnchantment {
 	 */
 	public static int toNukkit(Enchantment enchantment) {
 		NamespacedKey bukkitId = enchantment.getKey();
-		return bukkitToNukkit.getOrDefault(bukkitId, -1).intValue();
+		return bukkitToNukkit.getOrDefault(bukkitId, -1);
 	}
 
 	private static void twoWay(int nukkit, Enchantment bukkit) {
 		NamespacedKey bukkitId = bukkit.getKey();
 
 		nukkitToBukkit[nukkit] = bukkit;
-		bukkitToNukkit.put(bukkitId, nukkit);
+
+		if (!bukkitToNukkit.containsKey(bukkitId)) { //Ignore unsupported enchantments that are mapped to other values
+			bukkitToNukkit.put(bukkitId, nukkit);
+		}
 	}
 
 }

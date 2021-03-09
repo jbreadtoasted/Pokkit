@@ -16,17 +16,18 @@ public class PokkitEnchantmentTarget {
 	static {
 		twoWay(EnchantmentType.ALL, EnchantmentTarget.ALL);
 		twoWay(EnchantmentType.ARMOR, EnchantmentTarget.ARMOR);
-		twoWay(EnchantmentType.ARMOR_FEET, EnchantmentTarget.ARMOR_FEET);
 		twoWay(EnchantmentType.ARMOR_HEAD, EnchantmentTarget.ARMOR_HEAD);
-		twoWay(EnchantmentType.ARMOR_LEGS, EnchantmentTarget.ARMOR_LEGS);
 		twoWay(EnchantmentType.ARMOR_TORSO, EnchantmentTarget.ARMOR_TORSO);
-		twoWay(EnchantmentType.BOW, EnchantmentTarget.BOW);
-		twoWay(EnchantmentType.BREAKABLE, EnchantmentTarget.BREAKABLE);
+		twoWay(EnchantmentType.ARMOR_LEGS, EnchantmentTarget.ARMOR_LEGS);
+		twoWay(EnchantmentType.ARMOR_FEET, EnchantmentTarget.ARMOR_FEET);
+		twoWay(EnchantmentType.SWORD, EnchantmentTarget.WEAPON);
 		twoWay(EnchantmentType.DIGGER, EnchantmentTarget.TOOL);
 		twoWay(EnchantmentType.FISHING_ROD, EnchantmentTarget.FISHING_ROD);
-		twoWay(EnchantmentType.SWORD, EnchantmentTarget.WEAPON);
+		twoWay(EnchantmentType.BREAKABLE, EnchantmentTarget.BREAKABLE);
+		twoWay(EnchantmentType.BOW, EnchantmentTarget.BOW);
 		twoWay(EnchantmentType.WEARABLE, EnchantmentTarget.WEARABLE);
 		twoWay(EnchantmentType.TRIDENT, EnchantmentTarget.TRIDENT);
+		twoWay(EnchantmentType.CROSSBOW, EnchantmentTarget.BOW); //No type for crossbow in Bukkit 1.13.2
 	}
 
 	/**
